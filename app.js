@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 
-const userModel = require("./models/user-model");
-const productModel = require("./models/product-model");
-
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const ownersRouter = require("./routes/ownersRouter");

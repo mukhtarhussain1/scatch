@@ -106,7 +106,7 @@ module.exports.fetchUserData = async function (req, res) {
           id: user._id,
           email: user.email,
           fullname: user.fullname,
-          profilePicture: user.profilePicture,
+          profilePicture: `data:image/jpeg;base64,${user.profilePicture.toString('base64')}`,
           // Add any other fields you want to send
         },
       });
@@ -162,7 +162,7 @@ module.exports.updateProfile = async function (req, res) {
           id: user._id,
           email: user.email,
           fullname: user.fullname,
-          profilePicture: user.profilePicture,
+          profilePicture: `data:image/jpeg;base64,${user.profilePicture.toString('base64')}`,
         },
       });
     });

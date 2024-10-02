@@ -99,6 +99,10 @@ module.exports.fetchUserData = async function (req, res) {
         return res.status(404).json({ error: "User not found" });
       }
 
+      let userProfilePicture = user?.profilePicture
+        ? `data:image/jpeg;base64,${user?.profilePicture?.toString("base64")}`
+        : null;
+
       // Send the user data
       res.status(200).json({
         success: true,
@@ -106,7 +110,7 @@ module.exports.fetchUserData = async function (req, res) {
           id: user._id,
           email: user.email,
           fullname: user.fullname,
-          profilePicture: `data:image/jpeg;base64,${user.profilePicture.toString('base64')}`,
+          profilePicture: userProfilePicture,
           // Add any other fields you want to send
         },
       });
@@ -155,6 +159,10 @@ module.exports.updateProfile = async function (req, res) {
 
       await user.save();
 
+      let userProfilePicture = user?.profilePicture
+        ? `data:image/jpeg;base64,${user?.profilePicture?.toString("base64")}`
+        : null;
+
       // Send updated user data
       res.status(200).json({
         success: true,
@@ -162,7 +170,7 @@ module.exports.updateProfile = async function (req, res) {
           id: user._id,
           email: user.email,
           fullname: user.fullname,
-          profilePicture: `data:image/jpeg;base64,${user.profilePicture.toString('base64')}`,
+          profilePicture: userProfilePicture,
         },
       });
     });
